@@ -5497,7 +5497,7 @@ static void array_push_back(const TypeName* md,
 void GetCiphers(const FunctionCallbackInfo<Value>& args) {
   Environment* env = Environment::GetCurrent(args);
   CipherPushContext ctx(env);
-  EVP_CIPHER_do_all_sorted(array_push_back<EVP_CIPHER>, &ctx);
+  //FIXME EVP_CIPHER_do_all_sorted(array_push_back<EVP_CIPHER>, &ctx);
   args.GetReturnValue().Set(ctx.arr);
 }
 
@@ -5505,7 +5505,7 @@ void GetCiphers(const FunctionCallbackInfo<Value>& args) {
 void GetHashes(const FunctionCallbackInfo<Value>& args) {
   Environment* env = Environment::GetCurrent(args);
   CipherPushContext ctx(env);
-  EVP_MD_do_all_sorted(array_push_back<EVP_MD>, &ctx);
+  //FIXME EVP_MD_do_all_sorted(array_push_back<EVP_MD>, &ctx);
   args.GetReturnValue().Set(ctx.arr);
 }
 

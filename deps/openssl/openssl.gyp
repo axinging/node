@@ -11,6 +11,7 @@
     'xcode_version%': 0,
     'gas_version%': 0,
     'openssl_fips%': 'false',
+    'library%': 'static_library',
   },
   'targets': [
     {

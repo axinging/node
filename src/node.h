@@ -291,7 +291,7 @@ NODE_DEPRECATED("Use ParseEncoding(isolate, ...)",
   return ParseEncoding(v8::Isolate::GetCurrent(), encoding_v, default_encoding);
 })
 
-NODE_EXTERN void FatalException(v8::Isolate* isolate,
+__attribute__((visibility("default"))) void FatalException(v8::Isolate* isolate,
                                 const v8::TryCatch& try_catch);
 
 NODE_DEPRECATED("Use FatalException(isolate, ...)",

@@ -14,7 +14,7 @@
     'node_shared_openssl%': 'false',
     'node_v8_options%': '',
     'node_enable_v8_vtunejit%': 'false',
-    'node_target_type%': 'executable',
+    'node_target_type%': 'static_library',
     'node_core_target_name%': 'node',
     'library_files': [
       'lib/internal/bootstrap_node.js',
@@ -104,20 +104,27 @@
   'targets': [
     {
       'target_name': '<(node_core_target_name)',
-      'type': '<(node_target_type)',
+      #'type': '<(node_target_type)',
+      'type': 'static_library',
 
       'dependencies': [
         'node_js2c#host',
+        'deps/cares/cares.gyp:cares',
+        '../../v8/tools/gyp/v8.gyp:v8',
+        '../../v8/tools/gyp/v8.gyp:v8_libplatform',
         # 'deps/v8/tools/gyp/v8.gyp:v8',
         # 'deps/v8/tools/gyp/v8.gyp:v8_libplatform'
       ],
 
       'include_dirs': [
         'src',
+        '../boringssl/src/include',
         'tools/msvs/genfiles',
         'deps/uv/src/ares',
         '<(SHARED_INTERMEDIATE_DIR)', # for node_natives.h
         # 'deps/v8' # include/v8_platform.h
+        '../../v8', # include/v8_platform.h
+        '../../v8/include'
       ],
 
       'sources': [
@@ -269,7 +276,8 @@
             }],
             [ 'node_shared_openssl=="false"', {
               'dependencies': [
-                './deps/openssl/openssl.gyp:openssl',
+                #'./deps/openssl/openssl.gyp:openssl',
+                '../boringssl/boringssl.gyp:boringssl',
               ],
             }]]
         }, {
